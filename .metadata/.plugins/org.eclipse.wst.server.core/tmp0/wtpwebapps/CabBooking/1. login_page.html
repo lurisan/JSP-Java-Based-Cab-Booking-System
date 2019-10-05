@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <meta charset="UTF- 8"> 
+        <meta name="viewport" content="width=device width,initial-scale-1"> 
+        <link rel="stylesheet" type="text/css" href="1. zlogin_style.css"> 
+        <link rel="stylesheet" type="text/css" href="1. zanimate.css"> 
+        <title>Crusier Cabs</title>       
+    </head>     
+    <body>
+        <hr>
+        <hr>
+        <header id="header"> 
+          <h1 id="headerh1">C R U I S E R</h1><h1 id="headerh1">C A B S</h1>
+            <h4 id="headerh4" >. . .We'll take you wherever you want </h4> 
+                       
+        </header>         
+        <div class="login"> 
+            <h2 align="center">Login</h2> 
+            <form  id="loginform" name="f" onsubmit="return required()" method="post" action="checkLogin">
+                <label for="email2"> 
+                    <div align="center">Enter Email Address</div> 
+                                   
+                </label>                 
+                <div align="center">
+		<input type="email" name="email2" id="email2" autofocus="autofocus"> 
+		</div>
+                <label for="password2"> 
+                    <div align="center">Enter Password</div> 
+                                     
+                </label>                 
+                <div align="center"> 
+                    <input type="password" name="password2" id="password2"> 
+		</div>
+		<div align="center">
+                    <input type="submit" name="loginbtn" id="submitlogin" value="Login" class="btn1" style="color:white">
+                    <div id="signupnow"><a href="4. sign_up.html" style="color:white">New User</a></div>
+                    
+                </div>                 
+            </form>             
+        </div> 
+<!--add script for validation check-->
+<script>
+function CheckPasswordStrength(password) 
+{
+        //Regular Expressions.
+        var regex = new Array();
+        regex.push("[A-Z]"); //Uppercase Alphabet.
+        regex.push("[a-z]"); //Lowercase Alphabet.
+        regex.push("[0-9]"); //Digit.
+        regex.push("[$@$!%*#?&]"); //Special Character.
+ 
+        var passed = 0;
+ 
+        //Validate for each Regular Expression.
+        for (var i = 0; i < regex.length; i++) {
+            if (new RegExp(regex[i]).test(password)) {
+                passed++;
+            }
+        }
+        //Validate for length of Password.
+        if (passed > 2 && password.length > 8) {
+            passed++;
+        }
+        //Display status.
+        if(passed <5){
+	alert("Password is wrong");
+	return false;
+	}
+}
+
+function required()  
+{
+document.forms["f"]["email2"].style.borderColor="";   
+document.forms["f"]["password2"].style.borderColor="";
+var x = document.forms["f"]["email2"].value; 
+var y = document.forms["f"]["password2"].value;
+
+if (x == "")  
+{    
+document.forms["f"]["email2"].style.borderColor="red";
+document.forms["f"]["email2"].placeholder="Enter Email Address";
+document.forms["f"]["email2"].focus();
+return false;  
+}  
+
+if (y == "")  
+{  
+document.forms["f"]["password2"].style.borderColor="red";
+document.forms["f"]["password2"].placeholder="Enter Password";
+document.forms["f"]["password2"].focus();
+return false;  
+}
+else
+{
+CheckPasswordStrength(y)
+}
+localStorage.setItem("N", x);
+return true;
+}  
+</script>
+
+
+ <div class="sidebar">
+    <img src="1. zlogin.jpg" alt="cruiser" style="width:100%;">
+            </div>
+        <div class="bottombar1">
+        <div class="text1">
+            Cruiser Cabs gives kolkata a first-class taxi service- safe, comfortable, reliable and convenient. Ever since inception, we have encouraged transparent pricingand fair deal for everyone travelling with us. To serve you better, we are constantly innovating and upgreading our service to offer you world-class travel with great value-for-money. We hire educated and well spoken chauffeurs to aid you in the journey.
+         </div>   
+        </div>
+        <div class= "bottombar2">
+        <div class="text2">
+        Cruiser Cabs provides complete security and punctuality on our part. Whether you have a flight to catch, rush for an urgent meeting, or arrange a pickup for your daughter returning from a late night party, you can always count on us to get you there safely and on time. At Cruiser Cabs, we strive to be your most trusted travel companion.
+        <br>
+        <br>
+        Forever and Always . . .
+        </div>
+        </div>         
+        <footer id="footer"> 
+            <p>contact us: <a href="mailto:crusiercabsservice@gmail.com">crusiercabsservice@gmail.com</a></p> 
+        </footer>  
+    </body>     
+</html>

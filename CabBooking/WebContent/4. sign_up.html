@@ -1,0 +1,151 @@
+<!DOCTYPE html> 
+<html lang="en">
+    <head> 
+        <meta charset="UTF- 8"> 
+        <meta name="viewport" content="width=device width,initial-scale-1"> 
+        <link rel="stylesheet" type="text/css" href="4. zsign_up.css"> 
+        <title>Crusier Cab Service</title>         
+    </head>
+    <body>
+        <header id="header"> 
+            <h1 id="headerh1"> C R U I S E R </h1> <h1 id="headerh1">C A B S </h1> 
+            <h4 id="headerh4" >. . .We'll take you whatever you need </h4> 
+            <div class="search"> 
+	</div>             
+        </header>                  
+        <div class="signup"> 
+            <h3 align="center">Sign Up</h3> 
+	    <table align="center">
+            <form action="signup" id="signupform" method="post" name="f" onsubmit="return checkdetails()"> 
+                
+		<label for="username"> 
+                    <div align="center">Enter Username</div>                     
+                </label>                 
+        	   <div align="center">
+                    <input type="text" name="name" id="name" autofocus="autofocus">
+               </div>
+                              
+                <label for="email"> 
+                    <div align="center">Enter Email Address</div>                     
+                </label>                 
+        	
+		<div align="center">         
+                    <input type="email" name="email" id="email">
+	        </div>
+                                                
+                <label for="phoneno"> 
+                    <div align="center">Enter Mobile Number</div>                     
+                </label>                 
+                                <div align="center">
+                    <input type="phoneno" name="phoneno" id="phoneno"> 
+                                 </div>
+                <label for="password"> 
+                    <div align="center">Enter New Password</div>                     
+                </label>                 
+                                <div align="center">
+                    <input type="password" name="password" id="password">				
+               </div>
+		<label for="password"> 
+                    <div align="center">Confirm Password</div>                     
+                </label>                 
+                               <div align="center">
+                    <input type="password" name="password2" id="password2">
+		</div>
+                    <input type="submit" name="signupbtn"  id="submitsignup" value="Sign Up" class="btn2" style="color:white"> 
+		    <div id="login"><a href="1. login_page.html" style="color:white">Login</a></div>
+                
+              </form>
+             </table>            
+        </div>
+        <div class="sidebar">
+        <img src="4. zsignup.jpg" alt="cruiser">
+            </div>
+        <footer id="footer"> 
+            <p>contact us: <a href="mailto:crusiercabsservice@gmail.com">crusiercabsservice@gmail.com</a></p> 
+        </footer>         
+    </body>     
+</html>
+
+<!--adding javascript for checking password-->
+<script>
+  function checkdetails(){
+    var n=f.name.value;
+    var e=f.email.value;
+    var m=f.phoneno.value;
+    var p=f.password.value;
+    var cp=f.password2.value;
+    if(n!="" && e!="" && m!="" && p!="" && cp!=""){
+	if (p==cp){
+	return CheckPasswordStrength(p)	
+    	}
+	else{
+	alert("Password and Confirm Password Mismatch");
+    	document.forms["f"]["password2"].style.borderColor="red";
+	document.forms["f"]["password2"].placeholder="Re-enter Password";
+	document.forms["f"]["password2"].focus();
+	return false;
+    	}
+    }
+    else{
+        if(n==""){
+	document.forms["f"]["name"].style.borderColor="red";
+	document.forms["f"]["name"].placeholder="Enter Username";
+	document.forms["f"]["name"].focus();
+	return false;  }
+        if(e==""){
+	document.forms["f"]["email"].style.borderColor="red";
+	document.forms["f"]["email"].placeholder="Enter Email Address";
+	document.forms["f"]["email"].focus();
+	return false;  }
+        if(m==""){
+	document.forms["f"]["phoneno"].style.borderColor="red";
+	document.forms["f"]["phoneno"].placeholder="Enter Phone Number";
+	document.forms["f"]["phoneno"].focus();
+	return false;  }
+        if(p==""){
+	document.forms["f"]["password"].style.borderColor="red";
+	document.forms["f"]["password"].placeholder="Enter New Password";
+	document.forms["f"]["password"].focus();
+	return false;  }
+        if(cp==""){
+	document.forms["f"]["password2"].style.borderColor="red";
+	document.forms["f"]["password2"].placeholder="Re-enter Password";
+	document.forms["f"]["password2"].focus();
+	return false;  }
+    }
+}
+function CheckPasswordStrength(password) 
+{
+        //Regular Expressions.
+        var regex = new Array();
+        regex.push("[A-Z]"); //Uppercase Alphabet.
+        regex.push("[a-z]"); //Lowercase Alphabet.
+        regex.push("[0-9]"); //Digit.
+        regex.push("[$@$!%*#?&]"); //Special Character.
+ 
+        var passed = 0;
+ 
+        //Validate for each Regular Expression.
+        for (var i = 0; i < regex.length; i++) {
+            if (new RegExp(regex[i]).test(password)) {
+                passed++;
+            }
+        }
+ 
+        //Validate for length of Password.
+        if (passed > 2 && password.length > 8) {
+            passed++;
+        }
+ 
+        //Display status.
+        if(passed <5){
+	alert("Password must contain lower case, upper case, number, and a special character");
+	document.forms["f"]["password"].style.borderColor="red";
+	document.forms["f"]["password"].placeholder="Enter Password";
+	document.forms["f"]["password"].focus();
+	return false;
+	}
+        else
+	return true;
+    }
+</script>

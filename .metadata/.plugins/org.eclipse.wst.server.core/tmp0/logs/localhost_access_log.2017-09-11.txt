@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [11/Sep/2017:13:58:15 +0530] "GET /CabBooking/2.%20booking_page.html HTTP/1.1" 200 4560
+0:0:0:0:0:0:0:1 - - [11/Sep/2017:13:58:15 +0530] "GET /CabBooking/2.%20zsyle42.css HTTP/1.1" 304 -
+0:0:0:0:0:0:0:1 - - [11/Sep/2017:13:58:15 +0530] "GET /CabBooking/bootstrap/css/bootstrap.css HTTP/1.1" 404 1070
+0:0:0:0:0:0:0:1 - - [11/Sep/2017:13:58:27 +0530] "GET /CabBooking/3.%20price_page.html HTTP/1.1" 404 1056

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Trip Quote calculator</title>
+   <link href="style42.css" type="text/css" rel="stylesheet">
+            <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
+  </head>
+  <body>
+     <header id="header">
+ 			<button id="logout" onclick="localStorage.clear(); window.location='1st_page.html'">Logout</button>
+            <h1 id="headerh1"> C R U I S E R </h1> 
+            <h4 id="headerh4"> ...we'll take you whatever you need. </h4>            
+        </header>
+      	<fieldset class="f1">
+		<legend id="legend1">YOUR PICKUP POINT:</legend> 
+		<div class="result"></div>
+        </fieldset>		
+        <div class="container">
+<div class="col-md-12">
+            <input id="pac-input" type="text" placeholder="Enter pick up address">
+      <br/>
+      
+      <div class="map1">
+       
+          <h1>Enter your pick up point</h1></div>
+
+    <div id="map"></div>
+    <script>
+      new google.maps.places.Autocomplete(
+  (document.getElementById('pac-input')), {
+    types: ['geocode']
+  });
+    
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 22.5726, lng: 88.3639},
+          zoom: 15,
+          mapTypeId: 'roadmap'
+        });
+
+        // Create the search box and link it to the UI element.
+        var input = document.getElementById('pac-input');
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', function() {
+          searchBox.setBounds(map.getBounds());
+            
+        });
+
+        var markers = [];
+        // Listen for the event fired when the user selects a prediction and retrieve
+        // more details for that place.
+        searchBox.addListener('places_changed', function() {
+          var places = searchBox.getPlaces();
+            
+
+          if (places.length == 0) {
+            return;
+          }
+
+          // Clear out the old markers.
+          markers.forEach(function(marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          // For each place, get the icon, name and location.
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function(place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25)
+                
+            };
+
+            // Create a marker for each place.
+            markers.push(new google.maps.Marker({
+              map: map,
+              icon: icon,
+              title: place.name,
+              position: place.geometry.location
+                
+            }));
+              
+            var latLong = markers[0].position;
+            localStorage.setItem("storageName2", latLong);
+            var address = document.getElementById("pac-input").value; 
+            localStorage.setItem("storageName", address);
+            
+            document.querySelector('.result').innerHTML = "Pick up: " + address + " <br/> LatLong:" + latLong + '<br/>   <a href="page2.html">' + '<button type="button" class="btn ">Next...</button>' + ' </a>';
+            $('.result').html(address); 
+              
+
+            if (place.geometry.viewport) {
+              // Only geocodes have viewport.
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+           
+        });
+      }
+
+        
+    </script>
+    <div class="result"></div> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxlsfnOGdXI1XuEjWyymfg-7XyF_iX6yA&libraries=places&callback=initAutocomplete"
+    async defer></script>
+
+    </div> </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+  
+  </body>
+</html>
+ 
